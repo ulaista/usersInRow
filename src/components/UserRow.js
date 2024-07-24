@@ -7,7 +7,7 @@ function UserRow({ user, onClick }) {
       <td>{user.age}</td>
       <td>{user.gender}</td>
       <td>{user.phone}</td>
-      <td>{user.address.city}, {user.address.street}</td>
+      <td>{user.address.city}, {user.address.address}</td>
     </tr>
   );
 }

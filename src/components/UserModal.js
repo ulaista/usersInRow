@@ -1,8 +1,14 @@
 import React from 'react';
 
 function UserModal({ user, onClose }) {
+  const handleClickOutside = (event) => {
+    if (event.target.className === 'modal') {
+      onClose();
+    }
+  };
+
   return (
-    <div className="modal">
+    <div className="modal" onClick={handleClickOutside}>
       <div className="modal-content">
         <span className="close" onClick={onClose}>&times;</span>
         <h2>{user.firstName} {user.lastName}</h2>

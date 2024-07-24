@@ -2,14 +2,24 @@ import React, { useState } from 'react';
 
 function SearchInput({ onSearch }) {
   const [query, setQuery] = useState('');
+  const [column, setColumn] = useState('firstName');
 
   const handleSearch = () => {
-    onSearch(query);
-    console.log(query)
+    if (query.trim()) {
+      onSearch(column, query);
+    }
   };
 
   return (
     <div className="search-input">
+      <select value={column} onChange={(e) => setColumn(e.target.value)}>
+        <option value="firstName">ФИО</option>
+        <option value="age">Возраст</option>
+        <option value="gender">Пол</option>
+        <option value="phone">Телефон</option>
+        <option value="address.city">Адрес (город)</option>
+        <option value="address.street">Адрес (улица)</option>
+      </select>
       <input
         type="text"
         value={query}

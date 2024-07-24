@@ -12,31 +12,46 @@ function App() {
 
   useEffect(() => {
     fetch('https://dummyjson.com/users')
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then(data => setUsers(data.users))
-      .catch(error => setError(error));
+      .catch(error => setError(error.message));
   }, []);
 
-  const handleSearch = (query) => {
-    fetch(`https://dummyjson.com/users/filter?key=${query}`)
-      .then(response => response.json())
-      .then(data => setFilteredUsers(data.users))
-      .catch(error => setError(error));
+  const handleSearch = (key, value) => {
+    fetch(`https://dummyjson.com/users/filter?key=${key}&value=${value}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setFilteredUsers(data.users);
+        setError(null);
+      })
+      .catch(error => setError(error.message));
   };
 
   const handleRowClick = (user) => {
     setSelectedUser(user);
+    document.body.classList.add('modal-open');
   };
 
   const handleCloseModal = () => {
     setSelectedUser(null);
+    document.body.classList.remove('modal-open');
   };
 
   return (
     <div className="App">
       <h1>Таблица пользователей</h1>
       <SearchInput onSearch={handleSearch} />
-      {error && <p className="error">Ошибка: {error.message}</p>}
+      {error && <p className="error">Ошибка: {error}</p>}
       <UserTable users={filteredUsers.length ? filteredUsers : users} onRowClick={handleRowClick} />
       {selectedUser && <UserModal user={selectedUser} onClose={handleCloseModal} />}
     </div>
