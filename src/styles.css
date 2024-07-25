@@ -60,12 +60,12 @@ th span.resize-handle {
   cursor: pointer;
 }
 
-th.sort-asc .header-content::after {
+th .header-content.sort-asc::after {
   content: '▲';
   margin-left: 5px;
 }
 
-th.sort-desc .header-content::after {
+th .header-content.sort-desc::after {
   content: '▼';
   margin-left: 5px;
 }
