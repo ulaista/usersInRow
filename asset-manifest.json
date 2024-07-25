@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/usersInRow/static/css/main.f2152e0a.css",
+    "main.js": "/usersInRow/static/js/main.42d65062.js",
+    "index.html": "/usersInRow/index.html",
+    "main.f2152e0a.css.map": "/usersInRow/static/css/main.f2152e0a.css.map",
+    "main.42d65062.js.map": "/usersInRow/static/js/main.42d65062.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f2152e0a.css",
+    "static/js/main.42d65062.js"
+  ]
+}
